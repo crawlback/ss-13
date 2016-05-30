@@ -11,7 +11,7 @@ hit = 0
 
 hitMultiplier = [0, 1, 1, 2, 2, 2, 2, 2, 3, 3, 4]
 
-weapon = {"Crowbar": 1, "Stechkin Pistol": 2, "Energy Crossbow": 3, "Revolver": 4, "Energy Sword": 5, "Baloon": 7}
+weapon = {"Crowbar": 1, "Stechkin Pistol": 2, "Energy Crossbow": 3, "Energy Sword": 4, "Revolver": 5, "Balloon": 7}
 
 supplies = ["Candy", "Cup Ramen", "Chips", "4no Raisins", "Dr.Gibb", "Baguette"]
 
@@ -41,8 +41,9 @@ def fightClowns(clowns):
         print(str(clowns) + " clowns stagger towards you. Ready your " + str.lower(myWeapons[0]) + "!\n")
         attack = raw_input("Attack, or Run? (A for attack, R for run)\n")
         if (str.upper(attack) == "A"):
+            life = life - (hitMultiplier[random.randrange(1, len(hitMultiplier))]*weapon[myWeapons[0]])
             hit = (hitMultiplier[random.randrange(1, len(hitMultiplier))]*weapon[myWeapons[0]])
-            print(hit)
+            print("Your life is now: " + str(life))
             while (hit < 0):
                     if hit > 0:
                         print("You successfully killed them!")
@@ -53,7 +54,7 @@ def fightClowns(clowns):
                     else:
                         print(str(clowns) + " clowns try to ravage you, but you killed them. Your life health is now " + str(life))
                         return 0
-    elif zombies == 0:
+    elif clowns == 0:
          print ("But Nobody Came!")
     else:
         hit = (hitMultiplier[random.randrange(0, len(hitMultiplier))]*weapon[myWeapons[0]])
