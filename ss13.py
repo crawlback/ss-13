@@ -62,6 +62,7 @@ def fightClowns(clowns):
             life = life - hit
         print (str(clowns) + " attack you, but you killed them\n" "Life health is now " + str(life))
 
+
 def lootRoom():
     global life
     runAway = False
@@ -76,7 +77,7 @@ def lootRoom():
             if str.upper(attack) == "A":
                 hit = clowns-1 * (hitMultiplier[random.randrange(0, len(hitMultiplier)-4)])
                 life = life - hit
-                print (str(clowns) + " attacked you.\n" "Life health is now " + str(life))
+                print (str(clowns) + " clowns attacked you, and you killed them with your " + str(myWeapons[0]) + "\nLife health is now " + str(life))
             else:
                 runAway = True
                 print("You run away quietly, with no cool stuff.")
@@ -97,10 +98,10 @@ def lootRoom():
 def lootBodies():
     loot = raw_input("On your way you found the bodies. Would you like to loot the bodies? (Y/N)\n")
     if (str.upper(loot) == "Y"):
-        if (random.randrange(0,9)>8):
+        if (random.randrange(0,9)>7):
             print("A clown was not yet dead!\n")
             hit = 1 * hitMultiplier[random.randrange(0, len(hitMultiplier))]
-            life = life - hit
+            life = int(life) - int(hit)
             print("Clown did " + str(hit) + " damage to you.\nYour life is " + str(life))
         else:
             foundItem = supplies[random.randrange(0, len(inventory)-1)]
@@ -112,6 +113,7 @@ def lootBodies():
 def leaveStation():
     global stations
     global youAreHere
+    global life
     print("Where would you like to go? You are currently in " + stations[youAreHere])
     whereTo = ""
     i = 1
@@ -199,3 +201,4 @@ while (life > 0):
         print("Invalid input!")
 
 print("You died.")
+
