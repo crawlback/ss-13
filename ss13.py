@@ -13,7 +13,7 @@ clownattack = random.randrange(0, 4)
 
 hitMultiplier = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 1]
 
-weapon = {"Crowbar": 1, "Stechkin Pistol": 2, "Energy Crossbow": 3, "Energy Sword": 4, "Revolver": 5, "Balloon": 7, "Captain Laser": 15}
+weapon = {"Crowbar": 1, "Stechkin Pistol": 2, "Energy Crossbow": 3, "Energy Sword": 4, "Revolver": 5, "Balloon": 7, "Captain Laser": 11}
 
 supplies = ["Candy", "Cup Ramen", "Chips", "4no Raisins", "Dr.Gibb", "Baguette", "Xenomeat"]
 
@@ -32,7 +32,7 @@ flavorText =             {"Candy": "Nougat love it or hate it",
 			  "4no Raisins": "Best Raisins in the universe. Not sure why.",
 			  "Dr.Gibb": "A delicious mixture of 42 different flavors.",
 			  "Baguette": "Bon appetit!",
-			  "Xenomeat": Uf...Xenomorph meat?WHAT THE FU...
+			  "Xenomeat": "Uf...Xenomorph meat?WHAT THE FU..."
 			 }
 myWeapons = ["Crowbar"]
 
