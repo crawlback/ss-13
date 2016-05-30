@@ -3,13 +3,13 @@ import random
 author = 'aftonweb'
 welcome = 'Welcome to the Hell!'
 
-life = 20
+life = 35
 
 clowns = 0
 
 hit = 0
 
-clownattack = random.randrange(0, 3)
+clownattack = random.randrange(0, 4)
 
 hitMultiplier = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 1]
 
@@ -46,12 +46,11 @@ def fightClowns(clowns):
         attack = raw_input("Attack, or Run? (A for attack, R for run)\n")
         if (str.upper(attack) == "A"):
             print(str(clowns) + " clowns attacked you!")
-            life = life - clownattack*clowns-3
-            print("Your life is now: " + str(life))
+            life = life - clownattack*clowns
             hit = (hitMultiplier[random.randrange(0, len(hitMultiplier))]*weapon[myWeapons[0]])
             if hit != 0:
                 print("You successfully killed them!")
-                life = life - life - hit
+                print("Your life is now: " + str(life))
             if (hit == 0):
                 print("That was a lucky miss. Next time you should attack! (You successfully runned)")
                 return 0
@@ -60,7 +59,7 @@ def fightClowns(clowns):
     else:
         hit = (hitMultiplier[random.randrange(0, len(hitMultiplier))]*weapon[myWeapons[0]])
         if hit > 0:
-            life = life - hit
+            life = life - clownattack
         print (str(clowns) + " attack you, but you killed them\n" "Life health is now " + str(life))
 
 
@@ -72,13 +71,13 @@ def lootRoom():
     if(str.upper(loot) == "Y"):
         foundItem = supplies[random.randrange(0, len(supplies)-1)]
         foundWeapon = weapon.keys()[random.randrange(1, len(weapon)-1)]
-        clowns = random.randrange(0, 4)
+        clowns = random.randrange(0, 2)
         print(str(clowns) + " clowns found in room.")
         if clowns != 0:
             attack = raw_input("Attack or Run? (A/R)\n")
             if str.upper(attack) == "A":
-                hit = clowns-1 * (hitMultiplier[random.randrange(0, len(hitMultiplier)-4)])
-                life = life - clownattack
+                hit = clowns * (hitMultiplier[random.randrange(0, len(hitMultiplier)-4)])
+                life = life - hit
                 print (str(clowns) + " clowns attacked you, and you killed them with your " + str(myWeapons[0]) + "\nLife health is now " + str(life))
             else:
                 runAway = True
@@ -161,6 +160,7 @@ def changeWeapon():
     myWeapons.insert(0, w)
 
     print myWeapons[0] + " is equipped.\n"
+    
 
 print ("Author: " + author)
 print (welcome)
@@ -205,3 +205,5 @@ while (life > 0):
         print("Invalid input!")
 
 print("You died.")
+
+
