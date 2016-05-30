@@ -40,7 +40,7 @@ youAreHere = 0
 def fightClowns(clowns):
     global life
     global hit
-    
+
     if clowns != 0:
         print(str(clowns) + " clowns stagger towards you. Ready your " + str.lower(myWeapons[0]) + "!\n")
         attack = raw_input("Attack, or Run? (A for attack, R for run)\n")
@@ -54,6 +54,14 @@ def fightClowns(clowns):
             if (hit == 0):
                 print("That was a lucky miss. Next time you should attack! (You successfully runned)")
                 return 0
+        elif str.upper(attack) == "R":
+              stumblee = random.randrange(0, 2)
+              stumble = random.randrange(1, 7)
+              if stumblee > 0:
+                  print("Run away from the zombies, you have stumbled and lost " + str(stumble) + " hp")
+                  life = life - stumble
+              else:
+                  print("Nothing was happened.")
     elif clowns == 0:
          print ("But Nobody Came!")
     else:
@@ -160,7 +168,7 @@ def changeWeapon():
     myWeapons.insert(0, w)
 
     print myWeapons[0] + " is equipped.\n"
-    
+
 
 print ("Author: " + author)
 print (welcome)
@@ -192,7 +200,7 @@ while (life > 0):
         if (life > 0) and clowns !=0:
             lootBodies()
         elif (life <= 0):
-            break 
+            break
     elif (action == "2"):
         lootRoom()
     elif (action == "3"):
