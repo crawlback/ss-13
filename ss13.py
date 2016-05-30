@@ -13,16 +13,17 @@ clownattack = random.randrange(0, 4)
 
 hitMultiplier = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 1]
 
-weapon = {"Crowbar": 1, "Stechkin Pistol": 2, "Energy Crossbow": 3, "Energy Sword": 4, "Revolver": 5, "Balloon": 7}
+weapon = {"Crowbar": 1, "Stechkin Pistol": 2, "Energy Crossbow": 3, "Energy Sword": 4, "Revolver": 5, "Balloon": 7, "Captain Laser": 15}
 
-supplies = ["Candy", "Cup Ramen", "Chips", "4no Raisins", "Dr.Gibb", "Baguette"]
+supplies = ["Candy", "Cup Ramen", "Chips", "4no Raisins", "Dr.Gibb", "Baguette", "Xenomeat"]
 
 inventory = {"Chips": 5,
              "Candy": 1,
              "Cup Ramen": 0,
              "4no Raisins": 0,
              "Dr.Gibb": 0,
-             "Baguette": 0
+             "Baguette": 0,
+             "Xenomeat": 0
              }
 
 flavorText =             {"Candy": "Nougat love it or hate it",
@@ -30,11 +31,12 @@ flavorText =             {"Candy": "Nougat love it or hate it",
 			  "Chips": "Commander Riker's What-The-Crisps",
 			  "4no Raisins": "Best Raisins in the universe. Not sure why.",
 			  "Dr.Gibb": "A delicious mixture of 42 different flavors.",
-			  "Baguette": "Bon appetit!"
+			  "Baguette": "Bon appetit!",
+			  "Xenomeat": Uf...Xenomorph meat?WHAT THE FU...
 			 }
 myWeapons = ["Crowbar"]
 
-stations = ["Infinity Station", "Soviet Station", "Tau Ceti Station", "Animus Station"]
+stations = ["Infinity Station", "Soviet Station", "Tau Ceti Station", "Animus Station", "Hippie Station", "Citadel Station", "Colonial Marines Station"]
 youAreHere = 0
 
 def fightClowns(clowns):
