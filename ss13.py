@@ -15,7 +15,7 @@ hitMultiplier = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 1]
 
 weapon = {"Crowbar": 1, "Stechkin Pistol": 2, "Energy Crossbow": 3, "Energy Sword": 4, "Revolver": 5, "Balloon": 7, "Captain Laser": 11}
 
-supplies = ["Candy", "Cup Ramen", "Chips", "4no Raisins", "Dr.Gibb", "Baguette", "Xenomeat"]
+supplies = ["Candy", "Cup Ramen", "Chips", "4no Raisins", "Dr.Gibb", "Baguette", "Xenomeat", "The thing that you do not know"]
 
 inventory = {"Chips": 5,
              "Candy": 1,
@@ -23,16 +23,18 @@ inventory = {"Chips": 5,
              "4no Raisins": 0,
              "Dr.Gibb": 0,
              "Baguette": 0,
-             "Xenomeat": 0
+             "Xenomeat": 0,
+             "The thing that you do not know": 0
              }
 
-flavorText =             {"Candy": "Nougat love it or hate it",
+flavorText = {"Candy": "Nougat love it or hate it",
 			  "Cup Ramen": "A taste that reminds you of your school years.",
 			  "Chips": "Commander Riker's What-The-Crisps",
 			  "4no Raisins": "Best Raisins in the universe. Not sure why.",
 			  "Dr.Gibb": "A delicious mixture of 42 different flavors.",
 			  "Baguette": "Bon appetit!",
-			  "Xenomeat": "Uf...Xenomorph meat?WHAT THE FU..."
+              "Xenomeat": "Uf...Xenomorph meat?WHAT THE FU...",
+              "The thing that you do not know": "You do not know, what is this."
 			 }
 myWeapons = ["Crowbar"]
 
@@ -156,6 +158,33 @@ def checkInventory():
         myItem = invArray[inventoryIndex]
         if myItem == "Candy":
             life = life + 5
+        elif myItem == "Xenomeat":
+            xenorandom = random.randrange(0, 2)
+            xenodamage = random.randrange(3, 5)
+            xenoheal = random.randrange(1, 4)
+            if xenorandom == 0:
+                print("Nothing was happened")
+            elif xenorandom == 1:
+                life = life - xenodamage
+                print("You were poisoned!")
+                print("Your life is now: " + str(life))
+            elif xenorandom == 2:
+                life = life + xenoheal
+                print("Do you feel that taste great.")
+                print("Your life is now: " + str(life))
+        elif myItem == "The thing that you do not know":
+            thingrandom = random.randrange(0, 2)
+            if thingrandom == 1:
+                print("Oh! You spawned clowns!")
+                fightClowns(2)
+            elif thingrandom == 0:
+                print("Nothing was happened")
+            elif thingrandom == 2:
+                print("==========")
+                print("*You hear ""HONK"" sound behind you!")
+                print("Clown now HONK your ass, and you lost 3 hp.")
+                print("==========")
+                life = life - 3
         print flavorText[myItem]
         inventory[myItem] -= 1
 def changeWeapon():
