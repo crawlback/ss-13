@@ -9,7 +9,7 @@ clowns = 0
 
 hit = 0
 
-clownattack = random.randrange(0, 4)
+clownattack = random.randrange(0, 2)
 
 hitMultiplier = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 1]
 
@@ -23,8 +23,8 @@ inventory = {"Chips": 5,
              "4no Raisins": 0,
              "Dr.Gibb": 0,
              "Baguette": 0,
-             "Xenomeat": 0,
-             "The thing that you do not know": 0
+             "Xenomeat": 1,
+             "The thing that you do not know": 1
              }
 
 flavorText = {"Candy": "Nougat love it or hate it",
@@ -41,40 +41,37 @@ myWeapons = ["Crowbar"]
 stations = ["Infinity Station", "Soviet Station", "Tau Ceti Station", "Animus Station", "Hippie Station", "Citadel Station", "Colonial Marines Station"]
 youAreHere = 0
 
+
+
 def fightClowns(clowns):
     global life
     global hit
+    clownhealth = random.randrange(4, 6) * clowns
 
-    if clowns != 0:
+    if clownhealth >= 0:
         print(str(clowns) + " clowns stagger towards you. Ready your " + str.lower(myWeapons[0]) + "!\n")
-        attack = raw_input("Attack, or Run? (A for attack, R for run)\n")
-        if (str.upper(attack) == "A"):
-            print(str(clowns) + " clowns attacked you!")
-            life = life - clownattack*clowns
-            hit = (hitMultiplier[random.randrange(0, len(hitMultiplier))]*weapon[myWeapons[0]])
-            if hit != 0:
-                print("You successfully killed them!")
-                print("Your life is now: " + str(life))
-            if (hit == 0):
-                print("That was a lucky miss. Next time you should attack! (You successfully runned)")
-                return 0
-        elif str.upper(attack) == "R":
-              stumblee = random.randrange(0, 2)
-              stumble = random.randrange(1, 7)
-              if stumblee > 0:
-                  print("Run away from the zombies, you have stumbled and lost " + str(stumble) + " hp")
-                  life = life - stumble
-              else:
-                  print("Nothing was happened.")
-    elif clowns == 0:
-         print ("But Nobody Came!")
-    else:
-        hit = (hitMultiplier[random.randrange(0, len(hitMultiplier))]*weapon[myWeapons[0]])
-        if hit > 0:
-            life = life - clownattack
-        print (str(clowns) + " attack you, but you killed them\n" "Life health is now " + str(life))
-
-
+        while clownhealth >= 0:
+            attack = raw_input("Attack, or Run? (A for attack, R for run)\n")
+            attackclown = weapon[myWeapons[0]] + random.randrange(0, 4)
+            if (str.upper(attack) == "A"):
+                print(str(clowns) + " clowns attacked you!")
+                if attackclown != 0:
+                    print("You hit the clown!")
+                    life = life - clownattack*clowns
+                    clownhealth = clownhealth - attackclown
+                    print("Clown life is now: " +str(clownhealth))
+                    print("Your life is now: " + str(life))
+                if (attackclown == 0):
+                    print("That was a lucky miss. Next time you should attack!")
+                    life = life - clownattack*clowns
+            elif str.upper(attack) == "R":
+                  stumblee = random.randrange(0, 2)
+                  stumble = random.randrange(1, 7)
+                  if stumblee > 0:
+                      print("Run away from the zombies, you have stumbled and lost " + str(stumble) + " hp")
+                      life = life - stumble
+                  else:
+                      print("Nothing was happened.")
 def lootRoom():
     global life
     global clownattack
@@ -88,12 +85,7 @@ def lootRoom():
         if clowns != 0:
             attack = raw_input("Attack or Run? (A/R)\n")
             if str.upper(attack) == "A":
-                hit = clowns * (hitMultiplier[random.randrange(0, len(hitMultiplier)-4)])
-                life = life - hit
-                print (str(clowns) + " clowns attacked you, and you killed them with your " + str(myWeapons[0]) + "\nLife health is now " + str(life))
-            else:
-                runAway = True
-                print("You run away quietly, with no cool stuff.")
+                fightClowns(clowns)
         else:
             print ("The room is empty of clowns, but full of cool stuff...")
         if (runAway != True):
