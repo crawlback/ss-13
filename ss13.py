@@ -9,7 +9,9 @@ clowns = 0
 
 hit = 0
 
-hitMultiplier = [0, 1, 1, 2, 2, 2, 2, 2, 3, 3, 4]
+clownattack = random.randrange(0, 3)
+
+hitMultiplier = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 1]
 
 weapon = {"Crowbar": 1, "Stechkin Pistol": 2, "Energy Crossbow": 3, "Energy Sword": 4, "Revolver": 5, "Balloon": 7}
 
@@ -23,7 +25,7 @@ inventory = {"Chips": 5,
              "Baguette": 0
              }
 
-flavorText = {"Candy": "Nougat love it or hate it",
+flavorText =             {"Candy": "Nougat love it or hate it",
 			  "Cup Ramen": "A taste that reminds you of your school years.",
 			  "Chips": "Commander Riker's What-The-Crisps",
 			  "4no Raisins": "Best Raisins in the universe. Not sure why.",
@@ -37,23 +39,22 @@ youAreHere = 0
 
 def fightClowns(clowns):
     global life
+    global hit
+    
     if clowns != 0:
         print(str(clowns) + " clowns stagger towards you. Ready your " + str.lower(myWeapons[0]) + "!\n")
         attack = raw_input("Attack, or Run? (A for attack, R for run)\n")
         if (str.upper(attack) == "A"):
-            life = life - (hitMultiplier[random.randrange(1, len(hitMultiplier))]*weapon[myWeapons[0]])
-            hit = (hitMultiplier[random.randrange(1, len(hitMultiplier))]*weapon[myWeapons[0]])
+            print(str(clowns) + " clowns attacked you!")
+            life = life - clownattack*clowns-3
             print("Your life is now: " + str(life))
-            while (hit < 0):
-                    if hit > 0:
-                        print("You successfully killed them!")
-                        life = life - life - hit
-                    if (hit == 0):
-                        print("That was a lucky miss. Next time you should attack! (You successfully runned)")
-                        return 0
-                    else:
-                        print(str(clowns) + " clowns try to ravage you, but you killed them. Your life health is now " + str(life))
-                        return 0
+            hit = (hitMultiplier[random.randrange(0, len(hitMultiplier))]*weapon[myWeapons[0]])
+            if hit != 0:
+                print("You successfully killed them!")
+                life = life - life - hit
+            if (hit == 0):
+                print("That was a lucky miss. Next time you should attack! (You successfully runned)")
+                return 0
     elif clowns == 0:
          print ("But Nobody Came!")
     else:
@@ -65,6 +66,7 @@ def fightClowns(clowns):
 
 def lootRoom():
     global life
+    global clownattack
     runAway = False
     loot = raw_input("Loot this Room? (Y/N)\n")
     if(str.upper(loot) == "Y"):
@@ -76,7 +78,7 @@ def lootRoom():
             attack = raw_input("Attack or Run? (A/R)\n")
             if str.upper(attack) == "A":
                 hit = clowns-1 * (hitMultiplier[random.randrange(0, len(hitMultiplier)-4)])
-                life = life - hit
+                life = life - clownattack
                 print (str(clowns) + " clowns attacked you, and you killed them with your " + str(myWeapons[0]) + "\nLife health is now " + str(life))
             else:
                 runAway = True
@@ -96,12 +98,14 @@ def lootRoom():
                     print (item + ": " + str(inventory[item]))
             print("\n")
 def lootBodies():
+    global life
+    global clownattack
     loot = raw_input("On your way you found the bodies. Would you like to loot the bodies? (Y/N)\n")
     if (str.upper(loot) == "Y"):
         if (random.randrange(0,9)>7):
             print("A clown was not yet dead!\n")
             hit = 1 * hitMultiplier[random.randrange(0, len(hitMultiplier))]
-            life = int(life) - int(hit)
+            life = life - clownattack
             print("Clown did " + str(hit) + " damage to you.\nYour life is " + str(life))
         else:
             foundItem = supplies[random.randrange(0, len(inventory)-1)]
@@ -201,4 +205,3 @@ while (life > 0):
         print("Invalid input!")
 
 print("You died.")
-
