@@ -1,13 +1,17 @@
 import random
+import os
+import time
 
-author = 'afton, yuliafag'
+author = 'aftonweb'
 welcome = 'Welcome to the Hell!'
 
-life = 35
+life = 45
 
-clowns = 0
+clowns = random.randrange(0, 4)
 
 hit = 0
+
+money = 0
 
 clownattack = random.randrange(1, 2)
 
@@ -46,24 +50,31 @@ youAreHere = 0
 def fightClowns(clowns):
     global life
     global hit
-    clownhealth = random.randrange(4, 6) * clowns
+    global money
+    clownhealth = random.randrange(2, 3) * clowns
 
-    if clownhealth >= 0:
+    if clownhealth > 0:
         print(str(clowns) + " clowns stagger towards you. Ready your " + str.lower(myWeapons[0]) + "!\n")
-        while clownhealth >= 0:
+        while clownhealth > 0:
             attack = raw_input("Attack, or Run? (A for attack, R for run)\n")
-            attackclown = weapon[myWeapons[0]] + random.randrange(0, 4)
+            attackclown = weapon[myWeapons[0]] * random.randrange(0, 2)
             if (str.upper(attack) == "A"):
                 print(str(clowns) + " clowns attacked you!")
-                if attackclown != 0:
+                if attackclown > 0:
                     print("You hit the clown!")
                     life = life - clownattack*clowns
                     clownhealth = clownhealth - attackclown
+                    money = money + 1
                     print("Clown life is now: " +str(clownhealth))
                     print("Your life is now: " + str(life))
-                if (attackclown == 0):
+                    time.sleep(4)
+                    os.system('cls')
+                if (attackclown <= 0):
                     print("That was a lucky miss. Next time you should attack!")
                     life = life - clownattack*clowns
+                    time.sleep(4)
+                    os.system('cls')
+                    
             elif str.upper(attack) == "R":
                   stumblee = random.randrange(0, 2)
                   stumble = random.randrange(1, 7)
@@ -71,6 +82,8 @@ def fightClowns(clowns):
                       print("Run away from the clowns, you have stumbled and lost " + str(stumble) + " hp")
                       life = life - stumble
                       return 0
+                      time.sleep(4)
+                      os.system('cls')
                   else:
                       print("Nothing was happened.")
 def lootRoom():
@@ -83,10 +96,10 @@ def lootRoom():
         foundWeapon = weapon.keys()[random.randrange(1, len(weapon)-1)]
         clowns = random.randrange(0, 2)
         print(str(clowns) + " clowns found in room.")
-        if clowns != 0:
-            attack = raw_input("Attack or Run? (A/R)\n")
-            if str.upper(attack) == "A":
-                fightClowns(clowns)
+        time.sleep(4)
+        os.system('cls')
+        if clowns > 0:
+            fightClowns(clowns)
         else:
             print ("The room is empty of clowns, but full of cool stuff...")
         if (runAway != True):
@@ -94,6 +107,8 @@ def lootRoom():
             takeWeapon = raw_input("Cool! You found a " + foundWeapon + "\nEquip? (Y/N)")
             if str.upper(takeWeapon) == "Y": myWeapons.insert(0, foundWeapon)
             if str.upper(takeItem) == "Y": inventory[foundItem] += 1
+            time.sleep(4)
+            os.system('cls')
             print ("Current weapon: " + str(myWeapons[0]))
             print ("Destruction power: " + str(weapon[myWeapons[0]]))
             print("Inventory:\n==========")
@@ -101,6 +116,8 @@ def lootRoom():
                 if(inventory[item] > 0):
                     print (item + ": " + str(inventory[item]))
             print("\n")
+            time.sleep(4)
+            os.system('cls')
 def lootBodies():
     global life
     global clownattack
@@ -108,9 +125,9 @@ def lootBodies():
     if (str.upper(loot) == "Y"):
         if (random.randrange(0,9)>7):
             print("A clown was not yet dead!\n")
-            hit = 1 * hitMultiplier[random.randrange(0, len(hitMultiplier))]
-            life = life - clownattack
-            print("Clown did " + str(hit) + " damage to you.\nYour life is " + str(life))
+            time.sleep(4)
+            os.system('cls')
+            fightClowns(clowns)
         else:
             foundItem = supplies[random.randrange(0, len(inventory)-1)]
             print("You found a " + foundItem)
@@ -118,6 +135,8 @@ def lootBodies():
             if (str.upper(equip) == "Y"):
                 inventory[foundItem] += 1
                 print("Inventory: " + str(inventory))
+            time.sleep(4)
+            os.system('cls')
 def leaveStation():
     global stations
     global youAreHere
@@ -132,9 +151,12 @@ def leaveStation():
     stationIndex =  int(raw_input("I want to go to: " + "\n" + whereTo))
     youAreHere = stationIndex
     print("Welcome to " + stations[youAreHere])
+    time.sleep(4)
+    os.system('cls')
 def checkInventory():
     global life
     global flavorText
+    print ("Current Money: " + str(money))
     print ("Current weapon: " + str(myWeapons[0]))
     print ("Destruction power: " + str(weapon[myWeapons[0]]))
     print("Inventory:\n==========")
@@ -166,7 +188,7 @@ def checkInventory():
                 print("Do you feel that taste great.")
                 print("Your life is now: " + str(life))
         elif myItem == "The thing that you do not know":
-            thingrandom = random.randrange(0, 3)
+            thingrandom = random.randrange(0, 4)
             if thingrandom == 1:
                 print("Oh! You spawned clowns!")
                 fightClowns(2)
@@ -199,8 +221,35 @@ def saveGame():
     savefile.write('myWeapons = ' + str(myWeapons) + '\n')
     savefile.write('life = ' + str(life) + '\n')
     savefile.write('youAreHere = ' + str(youAreHere) + '\n')
+    savefile.write('money = ' + str(money) + '\n')
     savefile.close()
-
+    
+def Shop():
+    global money
+    print('Welcome to the clown store!\nIn this store you can buy candy.\n')
+    buyItem = input('1) Buy your candy(Price: 7 money).\n2)Get out of the shop.\n')
+    if (buyItem == 1):
+        if money > 7:
+            goBuyItem = "Candy"
+            inventory[goBuyItem] += 1
+            money -= 7
+            print("Candies treat!")
+            time.sleep(4)
+            os.system('cls')
+        elif money < 7:
+            print("You haven't enough money.")
+            time.sleep(4)
+            os.system('cls')
+            Shop()
+    elif (buyItem == 2):
+        print("Ok.")
+        time.sleep(4)
+        os.system('cls')
+        return 0
+    else:
+        time.sleep(4)
+        os.system('cls')
+        Shop()
 
 print ("Author: " + author)
 print (welcome)
@@ -214,7 +263,7 @@ if (str.upper(ready) != "Y"):
 else:
     print "Lock and load!\n"
 
-fightClowns(3)
+fightClowns(random.randrange(0, 4))
 lootBodies()
 
 print("Now let's go loot a room")
@@ -224,33 +273,51 @@ print("You seem to be getting this on your own. Here's a candy bar to restore yo
 inventory["Candy"] += 1
 
 while (life > 0):
+    time.sleep(4)
+    os.system('cls')
     print("Life: " + str(life))
-    action = raw_input("What would you like to do now?\n1)Find more clowns\n2)Loot more rooms\n3)Leave the station\n4)Check inventory\n5)Change Weapon\n6)Save game\n7)Load game\n\n")
+    action = raw_input("What would you like to do now?\n1) for find more clowns\n2)Loot more rooms\n3)Leave the station\n4)Check inventory\n5)Change Weapon\n6)Shop\n7)Save Game\n8)Load Game\n\n")
     if (action == "1"):
-
-        fightClowns(random.randrange(0,10))
-        if (life > 0) and clowns !=0:
+        fightClowns(random.randrange(0,5))
+        if (life > 0) and clowns > 0:
             lootBodies()
         elif (life <= 0):
             break
     elif (action == "2"):
         lootRoom()
+        time.sleep(4)
+        os.system('cls')
     elif (action == "3"):
         leaveStation()
+        time.sleep(4)
+        os.system('cls')
     elif (action == "4"):
         checkInventory()
+        time.sleep(4)
+        os.system('cls')
     elif (action == "5"):
         changeWeapon()
+        time.sleep(4)
+        os.system('cls')
     elif (action == "6"):
-        saveGame()
+        Shop()
+        time.sleep(4)
+        os.system('cls')
     elif (action == "7"):
+        saveGame()
+        time.sleep(4)
+        os.system('cls')
+    elif (action == "8"):
         savefile2 = open('save.sv', 'r')
         exec(savefile2.read())
         savefile2.close()
+        time.sleep(4)
+        os.system('cls')
     else:
         print("Invalid input!")
 
 print("You died.")
+time.sleep(4)
 
 
 
