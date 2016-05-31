@@ -1,6 +1,6 @@
 import random
 
-author = 'aftonweb'
+author = 'afton, yuliafag'
 welcome = 'Welcome to the Hell!'
 
 life = 35
