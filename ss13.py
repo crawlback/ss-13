@@ -15,7 +15,7 @@ hitMultiplier = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 1]
 
 weapon = {"Crowbar": 2, "Stechkin Pistol": 3, "Energy Crossbow": 4, "Energy Sword": 5, "Revolver": 6, "Balloon": 8, "Captain Laser": 12}
 
-supplies = ["Candy", "Cup Ramen", "Chips", "4no Raisins", "Dr.Gibb", "Baguette", "Xenomeat", "The thing that you do not know"]
+supplies = ["Candy", "Cup Ramen", "Chips", "4no Raisins", "Dr.Gibb", "Baguette", "Xenomeat", "The thing you don't know"]
 
 inventory = {"Chips": 5,
              "Candy": 1,
@@ -28,13 +28,13 @@ inventory = {"Chips": 5,
              }
 
 flavorText = {"Candy": "Nougat love it or hate it",
-	      "Cup Ramen": "A taste that reminds you of your school years.",
+	      "Cup of Ramen": "This taste reminds you of your school years.",
 	      "Chips": "Commander Riker's What-The-Crisps",
-	      "4no Raisins": "Best Raisins in the universe. Not sure why.",
+	      "4no Raisins": "Best Raisins in the whole universe. Not really sure why.",
 	      "Dr.Gibb": "A delicious mixture of 42 different flavors.",
 	      "Baguette": "Bon appetit!",
-              "Xenomeat": "Uf...Xenomorph meat?WHAT THE FU...",
-              "The thing that you do not know": "You do not know, what is this."
+              "Xenomeat": "Uf...Xenomorph meat? WHAT THE FU...",
+              "The thing you don't know": "You don't know what's this."
 			 }
 myWeapons = ["Crowbar"]
 
@@ -104,7 +104,7 @@ def lootRoom():
 def lootBodies():
     global life
     global clownattack
-    loot = raw_input("On your way you found the bodies. Would you like to loot the bodies? (Y/N)\n")
+    loot = raw_input("You found bodies on your way. Would you like to loot the bodies? (Y/N)\n")
     if (str.upper(loot) == "Y"):
         if (random.randrange(0,9)>7):
             print("A clown was not yet dead!\n")
