@@ -9,11 +9,11 @@ clowns = 0
 
 hit = 0
 
-clownattack = random.randrange(0, 2)
+clownattack = random.randrange(1, 2)
 
 hitMultiplier = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 1]
 
-weapon = {"Crowbar": 1, "Stechkin Pistol": 2, "Energy Crossbow": 3, "Energy Sword": 4, "Revolver": 5, "Balloon": 7, "Captain Laser": 11}
+weapon = {"Crowbar": 2, "Stechkin Pistol": 3, "Energy Crossbow": 4, "Energy Sword": 5, "Revolver": 6, "Balloon": 8, "Captain Laser": 12}
 
 supplies = ["Candy", "Cup Ramen", "Chips", "4no Raisins", "Dr.Gibb", "Baguette", "Xenomeat", "The thing that you do not know"]
 
@@ -23,22 +23,22 @@ inventory = {"Chips": 5,
              "4no Raisins": 0,
              "Dr.Gibb": 0,
              "Baguette": 0,
-             "Xenomeat": 1,
-             "The thing that you do not know": 1
+             "Xenomeat": 0,
+             "The thing that you do not know": 0
              }
 
 flavorText = {"Candy": "Nougat love it or hate it",
-			  "Cup Ramen": "A taste that reminds you of your school years.",
-			  "Chips": "Commander Riker's What-The-Crisps",
-			  "4no Raisins": "Best Raisins in the universe. Not sure why.",
-			  "Dr.Gibb": "A delicious mixture of 42 different flavors.",
-			  "Baguette": "Bon appetit!",
+	      "Cup Ramen": "A taste that reminds you of your school years.",
+	      "Chips": "Commander Riker's What-The-Crisps",
+	      "4no Raisins": "Best Raisins in the universe. Not sure why.",
+	      "Dr.Gibb": "A delicious mixture of 42 different flavors.",
+	      "Baguette": "Bon appetit!",
               "Xenomeat": "Uf...Xenomorph meat?WHAT THE FU...",
               "The thing that you do not know": "You do not know, what is this."
 			 }
 myWeapons = ["Crowbar"]
 
-stations = ["Infinity Station", "Soviet Station", "Tau Ceti Station", "Animus Station", "Hippie Station", "Citadel Station", "Colonial Marines Station"]
+stations = ["Infinity Station", "Soviet Station", "Tau Ceti Station", "Animus Station"]
 youAreHere = 0
 
 
@@ -68,8 +68,9 @@ def fightClowns(clowns):
                   stumblee = random.randrange(0, 2)
                   stumble = random.randrange(1, 7)
                   if stumblee > 0:
-                      print("Run away from the zombies, you have stumbled and lost " + str(stumble) + " hp")
+                      print("Run away from the clowns, you have stumbled and lost " + str(stumble) + " hp")
                       life = life - stumble
+                      return 0
                   else:
                       print("Nothing was happened.")
 def lootRoom():
@@ -151,7 +152,7 @@ def checkInventory():
         if myItem == "Candy":
             life = life + 5
         elif myItem == "Xenomeat":
-            xenorandom = random.randrange(0, 2)
+            xenorandom = random.randrange(-1, 3)
             xenodamage = random.randrange(3, 5)
             xenoheal = random.randrange(1, 4)
             if xenorandom == 0:
@@ -165,7 +166,7 @@ def checkInventory():
                 print("Do you feel that taste great.")
                 print("Your life is now: " + str(life))
         elif myItem == "The thing that you do not know":
-            thingrandom = random.randrange(0, 2)
+            thingrandom = random.randrange(0, 3)
             if thingrandom == 1:
                 print("Oh! You spawned clowns!")
                 fightClowns(2)
@@ -192,6 +193,14 @@ def changeWeapon():
 
     print myWeapons[0] + " is equipped.\n"
 
+def saveGame():
+    savefile = open('save.sv', 'w')
+    savefile.write('inventory = ' + str(inventory) + '\n')
+    savefile.write('myWeapons = ' + str(myWeapons) + '\n')
+    savefile.write('life = ' + str(life) + '\n')
+    savefile.write('youAreHere = ' + str(youAreHere) + '\n')
+    savefile.close()
+
 
 print ("Author: " + author)
 print (welcome)
@@ -216,7 +225,7 @@ inventory["Candy"] += 1
 
 while (life > 0):
     print("Life: " + str(life))
-    action = raw_input("What would you like to do now?\n1)Find more clowns\n2)Loot more rooms\n3)Leave the station\n4)Check inventory\n5)Change Weapon\n\n")
+    action = raw_input("What would you like to do now?\n1)Find more clowns\n2)Loot more rooms\n3)Leave the station\n4)Check inventory\n5)Change Weapon\n6)Save game\n7)Load game\n\n")
     if (action == "1"):
 
         fightClowns(random.randrange(0,10))
@@ -232,9 +241,16 @@ while (life > 0):
         checkInventory()
     elif (action == "5"):
         changeWeapon()
+    elif (action == "6"):
+        saveGame()
+    elif (action == "7"):
+        savefile2 = open('save.sv', 'r')
+        exec(savefile2.read())
+        savefile2.close()
     else:
         print("Invalid input!")
 
 print("You died.")
+
 
 
