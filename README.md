@@ -4,7 +4,8 @@ But seriously: your task - to survive at this station. No, at these stations. Ye
 
 #To Do list:
 1. Upgrade fight system; - Ready
-2. Add money and shop
+2. Add money and shop; - Ready
+3. Add missions
 
 #Small F.A.Q.
 1. Candy's treat. No seriously.
