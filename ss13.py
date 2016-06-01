@@ -19,28 +19,28 @@ hitMultiplier = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 1]
 
 weapon = {"Crowbar": 2, "Stechkin Pistol": 3, "Energy Crossbow": 4, "Energy Sword": 5, "Revolver": 6, "Balloon": 8, "Captain Laser": 12, "IVB": 11, "Replica Katana": 13, "Wand Of Autism" 10, "Firebutt" 7}
 
-supplies = ["Candy", "Cup Ramen", "Chips", "4no Raisins", "Dr.Gibb", "Baguette", "Xenomeat", "The thing that you do not know", "Banana"]
+supplies = ["Candy", "Cup of Ramen", "Chips", "4no Raisins", "Dr.Gibb", "Baguette", "Xenomeat", "The thing you don't know", "Banana"]
 
 inventory = {"Chips": 5,
              "Candy": 1,
-             "Cup Ramen": 0,
+             "Cup of Ramen": 0,
              "4no Raisins": 0,
              "Dr.Gibb": 0,
              "Baguette": 0,
              "Xenomeat": 0,
-             "The thing that you do not know": 0,
+             "The thing you don't know": 0,
              "Banana": 1,
              }
 
 flavorText = {"Candy": "Nougat love it or hate it",
-	      "Cup Ramen": "A taste that reminds you of your school years.",
+	      "Cup of Ramen": "This taste reminds you of your school years.",
 	      "Chips": "Commander Riker's What-The-Crisps",
-	      "4no Raisins": "Best Raisins in the universe. Not sure why.",
+	      "4no Raisins": "Best Raisins in the universe. Not really sure why.",
 	      "Dr.Gibb": "A delicious mixture of 42 different flavors.",
 	      "Baguette": "Bon appetit!",
               "Xenomeat": "Uf...Xenomorph meat?WHAT THE FU...",
-              "The thing that you do not know": "You do not know, what is this."
-              "Banana": "Favorite clown food.Ha-ha. Not funny joke"
+              "The thing you don't know": "You don't know what is it."
+              "Banana": "Favorite clown's food. Ha-ha. It's not funny."
 			 }
 myWeapons = ["Crowbar"]
 
@@ -58,7 +58,7 @@ def fightClowns(clowns):
     if clownhealth > 0:
         print(str(clowns) + " clowns stagger towards you. Ready your " + str.lower(myWeapons[0]) + "!\n")
         while clownhealth > 0:
-            attack = raw_input("Attack, or Run? (A for attack, R for run)\n")
+            attack = raw_input("Attack or Run? (A for attack, R for run)\n")
             attackclown = weapon[myWeapons[0]] * random.randrange(0, 2)
             if (str.upper(attack) == "A"):
                 print(str(clowns) + " clowns attacked you!")
@@ -67,12 +67,12 @@ def fightClowns(clowns):
                     life = life - clownattack*clowns
                     clownhealth = clownhealth - attackclown
                     money = money + 1
-                    print("Clown life is now: " +str(clownhealth))
+                    print("Clown's life is now: " +str(clownhealth))
                     print("Your life is now: " + str(life))
                     time.sleep(4)
                     os.system('cls')
                 if (attackclown <= 0):
-                    print("That was a lucky miss. Next time you should attack!")
+                    print("That was a lucky miss. Next time you should attack it!")
                     life = life - clownattack*clowns
                     time.sleep(4)
                     os.system('cls')
@@ -87,17 +87,17 @@ def fightClowns(clowns):
                       time.sleep(4)
                       os.system('cls')
                   else:
-                      print("Nothing was happened.")
+                      print("Nothing happened.")
 def lootRoom():
     global life
     global clownattack
     runAway = False
-    loot = raw_input("Loot this Room? (Y/N)\n")
+    loot = raw_input("Want you to loot this Room? (Y/N)\n")
     if(str.upper(loot) == "Y"):
         foundItem = supplies[random.randrange(0, len(supplies)-1)]
         foundWeapon = weapon.keys()[random.randrange(1, len(weapon)-1)]
         clowns = random.randrange(0, 2)
-        print(str(clowns) + " clowns found in room.")
+        print(str(clowns) + " clowns were found in the room.")
         time.sleep(4)
         os.system('cls')
         if clowns > 0:
@@ -123,10 +123,10 @@ def lootRoom():
 def lootBodies():
     global life
     global clownattack
-    loot = raw_input("On your way you found the bodies. Would you like to loot the bodies? (Y/N)\n")
+    loot = raw_input("You found bodies in the room. Would you like to loot the bodies? (Y/N)\n")
     if (str.upper(loot) == "Y"):
         if (random.randrange(0,9)>7):
-            print("A clown was not yet dead!\n")
+            print("A clown isn't dead yet!\n")
             time.sleep(4)
             os.system('cls')
             fightClowns(clowns)
@@ -180,26 +180,26 @@ def checkInventory():
             xenodamage = random.randrange(3, 5)
             xenoheal = random.randrange(1, 4)
             if xenorandom == 0:
-                print("Nothing was happened")
+                print("Nothing happened")
             elif xenorandom == 1:
                 life = life - xenodamage
                 print("You were poisoned!")
                 print("Your life is now: " + str(life))
             elif xenorandom == 2:
                 life = life + xenoheal
-                print("Do you feel that taste great.")
+                print("You like that taste.")
                 print("Your life is now: " + str(life))
-        elif myItem == "The thing that you do not know":
+        elif myItem == "The thing you don't know":
             thingrandom = random.randrange(0, 4)
             if thingrandom == 1:
-                print("Oh! You spawned clowns!")
+                print("Oh! You have spawned clowns!")
                 fightClowns(2)
             elif thingrandom == 0:
-                print("Nothing was happened")
+                print("Nothing happened")
             elif thingrandom == 2:
                 print("==========")
                 print("*You hear ""HONK"" sound behind you!")
-                print("Clown now HONK your ass, and you lost 3 hp.")
+                print("Clown has HONKed your ass, and you lost 3 hp.")
                 print("==========")
                 life = life - 3
         print flavorText[myItem]
@@ -228,8 +228,8 @@ def saveGame():
     
 def Shop():
     global money
-    print('Welcome to the clown store!\nIn this store you can buy candy.\n')
-    buyItem = input('1) Buy your candy(Price: 7 money).\n2)Get out of the shop.\n')
+    print('Welcome to the clown's store!\nIn this store you can buy candy.\n')
+    buyItem = input('1) Buy a candy(Price: 7 money).\n2)Get out of the shop.\n')
     if (buyItem == 1):
         if money > 7:
             goBuyItem = "Candy"
@@ -239,7 +239,7 @@ def Shop():
             time.sleep(4)
             os.system('cls')
         elif money < 7:
-            print("You haven't enough money.")
+            print("You don't have enough money to pay.")
             time.sleep(4)
             os.system('cls')
             Shop()
@@ -261,24 +261,24 @@ print ("\nLook, a small horde of clowns  approaches! Take this crowbar and go ba
 ready = raw_input("Ready to fight?\n")
 
 if (str.upper(ready) != "Y"):
-    print "Too bad, this is Infinity Station. You better get ready.\n"
+    print "Too bad, this is Infinity Station. You shouild've got ready.\n"
 else:
     print "Lock and load!\n"
 
 fightClowns(random.randrange(0, 4))
 lootBodies()
 
-print("Now let's go loot a room")
+print("Now let's go to loot this room")
 lootRoom()
 
-print("You seem to be getting this on your own. Here's a candy bar to restore your health, and one for the road. \n")
+print("You seem to be getting this on your own. Here's one candy bar to restore your health, and another for your journey. \n")
 inventory["Candy"] += 1
 
 while (life > 0):
     time.sleep(4)
     os.system('cls')
     print("Life: " + str(life))
-    action = raw_input("What would you like to do now?\n1) for find more clowns\n2)Loot more rooms\n3)Leave the station\n4)Check inventory\n5)Change Weapon\n6)Shop\n7)Save Game\n8)Load Game\n\n")
+    action = raw_input("What would you like to do now?\n1) find more clowns\n2)Loot more rooms\n3)Leave the station\n4)Check my inventory\n5)Change the Weapon\n6)Shop\n7)Save Game\n8)Load Game\n\n")
     if (action == "1"):
         fightClowns(random.randrange(0,5))
         if (life > 0) and clowns > 0:
