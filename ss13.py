@@ -2,7 +2,7 @@ import random
 import os
 import time
 
-author's = 'aftonweb, Julia'
+author = 'aftonweb, Julia'
 welcome = 'Welcome to the Hell!'
 
 life = 45
