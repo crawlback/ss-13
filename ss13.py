@@ -2,7 +2,7 @@ import random
 import os
 import time
 
-author = 'aftonweb'
+author's = 'aftonweb, Julia'
 welcome = 'Welcome to the Hell!'
 
 life = 45
@@ -17,9 +17,9 @@ clownattack = random.randrange(1, 2)
 
 hitMultiplier = [0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 1]
 
-weapon = {"Crowbar": 2, "Stechkin Pistol": 3, "Energy Crossbow": 4, "Energy Sword": 5, "Revolver": 6, "Balloon": 8, "Captain Laser": 12}
+weapon = {"Crowbar": 2, "Stechkin Pistol": 3, "Energy Crossbow": 4, "Energy Sword": 5, "Revolver": 6, "Balloon": 8, "Captain Laser": 12, "IVB": 11, "Replica Katana": 13, "Wand Of Autism" 10, "Firebutt" 7}
 
-supplies = ["Candy", "Cup Ramen", "Chips", "4no Raisins", "Dr.Gibb", "Baguette", "Xenomeat", "The thing that you do not know"]
+supplies = ["Candy", "Cup Ramen", "Chips", "4no Raisins", "Dr.Gibb", "Baguette", "Xenomeat", "The thing that you do not know", "Banana"]
 
 inventory = {"Chips": 5,
              "Candy": 1,
@@ -28,7 +28,8 @@ inventory = {"Chips": 5,
              "Dr.Gibb": 0,
              "Baguette": 0,
              "Xenomeat": 0,
-             "The thing that you do not know": 0
+             "The thing that you do not know": 0,
+             "Banana": 1,
              }
 
 flavorText = {"Candy": "Nougat love it or hate it",
@@ -39,10 +40,11 @@ flavorText = {"Candy": "Nougat love it or hate it",
 	      "Baguette": "Bon appetit!",
               "Xenomeat": "Uf...Xenomorph meat?WHAT THE FU...",
               "The thing that you do not know": "You do not know, what is this."
+              "Banana": "Favorite clown food.Ha-ha. Not funny joke"
 			 }
 myWeapons = ["Crowbar"]
 
-stations = ["Infinity Station", "Soviet Station", "Tau Ceti Station", "Animus Station"]
+stations = ["Infinity Station", "Soviet Station", "Tau Ceti Station", "Animus Station", "Hippie Station"]
 youAreHere = 0
 
 
